@@ -1,0 +1,71 @@
+.grid {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--rs-grid-min, 280px)), 1fr));
+    gap: var(--rs-gap, var(--layout-grid-gap));
+}
+
+.splitContainer {
+    width: 100%;
+    min-width: 0;
+    container-type: inline-size;
+}
+
+.splitGrid {
+    display: grid;
+    min-width: 0;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+    gap: var(--rs-gap, var(--layout-grid-gap));
+}
+
+.splitGrid > * {
+    min-width: 0;
+}
+
+.wideFirst {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+}
+
+.wideSecond {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+}
+
+@container (max-width: 760px) {
+    .splitGrid,
+    .wideFirst,
+    .wideSecond {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+.stack {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: var(--rs-gap, var(--layout-block-gap));
+}
+
+.row {
+    flex-direction: row;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.alignStart {
+    align-items: flex-start;
+}
+
+.alignCenter {
+    align-items: center;
+}
+
+.alignEnd {
+    align-items: flex-end;
+}
+
+.alignStretch {
+    align-items: stretch;
+}
