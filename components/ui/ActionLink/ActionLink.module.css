@@ -1,0 +1,49 @@
+.root {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    text-align: center;
+}
+
+.root > span:first-child {
+    min-width: 0;
+}
+
+.root svg {
+    flex-shrink: 0;
+}
+
+.root:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+/* Variante textual */
+
+.text {
+    color: var(--color-primary);
+
+    border-bottom: 1px solid currentColor;
+    padding-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.5;
+}
+
+.text:hover {
+    color: var(--color-secondary);
+}
+
+@media (max-width: 560px) {
+    .root {
+        gap: 9px;
+    }
+
+    .root svg {
+        width: 22px;
+        height: 22px;
+    }
+}
