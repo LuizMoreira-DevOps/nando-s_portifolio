@@ -1,0 +1,319 @@
+.studio {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    z-index: 1200;
+    font-family: var(--font-body);
+    color: var(--color-text);
+}
+.toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+.toggle span {
+    color: var(--color-primary);
+    font-size: 20px;
+    line-height: 1;
+}
+.toggle:hover {
+    background: var(--color-soft);
+}
+.panel {
+    width: min(400px, calc(100vw - 32px));
+    max-height: min(80dvh, 800px);
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+.panelHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+    border-bottom: 1px solid var(--color-border);
+}
+.panelHeader h2 {
+    font-size: 24px;
+    letter-spacing: -0.045em;
+    margin: 4px 0 6px;
+}
+.panelHeader p {
+    font-size: 12px;
+    color: var(--color-muted);
+    margin: 0;
+    line-height: 1.5;
+}
+.panelHeader .kicker {
+    font-size: 10px;
+    letter-spacing: 0.13em;
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+.close {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 22px;
+}
+.panelBody {
+    padding: 0 20px 20px;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+.group {
+    margin: 0;
+    padding: 20px 0;
+    border: none;
+    border-bottom: 1px solid var(--color-border);
+    min-width: 0;
+}
+.group legend {
+    padding: 20px 0 0;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--color-text);
+}
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 12px 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+.field select,
+.hexInput,
+.jsonDetails textarea {
+    width: 100%;
+    min-height: 42px;
+    padding: 9px 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 13px;
+}
+.hint {
+    font-size: 12px;
+    line-height: 1.55;
+    color: var(--color-muted);
+    margin: 8px 0 0;
+}
+.rangeLabel {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin: 15px 0 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+.rangeLabel input {
+    accent-color: var(--color-primary);
+    width: 100%;
+}
+.colorFields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 13px;
+    margin-top: 16px;
+}
+.colorField {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    font-size: 11px;
+    font-weight: 600;
+}
+.colorControls {
+    display: flex;
+    min-width: 0;
+    gap: 5px;
+}
+.colorPicker {
+    width: 39px;
+    min-width: 39px;
+    height: 40px;
+    padding: 2px;
+    border: 1px solid var(--color-border);
+    background: var(--color-surface);
+    border-radius: 6px;
+    cursor: pointer;
+}
+.hexInput {
+    min-width: 0;
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    padding: 6px 5px;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 11px;
+}
+.warning {
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--color-text);
+    background: var(--color-soft);
+    border-left: 3px solid var(--color-tertiary);
+    padding: 10px;
+}
+.saveArea {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    padding-top: 20px;
+}
+.export,
+.reset {
+    padding: 12px 14px;
+    border-radius: 7px;
+    border: 1px solid var(--color-primary);
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.export {
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+}
+.reset {
+    background: var(--color-surface);
+    color: var(--color-primary);
+}
+.jsonDetails {
+    width: 100%;
+    margin-top: 5px;
+}
+.jsonDetails summary {
+    font-size: 12px;
+    color: var(--color-secondary);
+    cursor: pointer;
+    padding: 8px 0;
+}
+.jsonDetails textarea {
+    resize: vertical;
+    font-family: ui-monospace, Consolas, monospace;
+    font-size: 11px;
+    line-height: 1.6;
+}
+.saveArea > .hint {
+    width: 100%;
+}
+.studio :where(button, select, input, textarea, summary):focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+@media (max-width: 600px) {
+    .studio {
+        bottom: 12px;
+        left: 12px;
+    }
+    .panel {
+        max-height: calc(100dvh - 98px);
+        width: calc(100vw - 24px);
+    }
+    .colorFields {
+        gap: 9px;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .studio * {
+        scroll-behavior: auto;
+    }
+}
+
+/* O botão de desenvolvimento ocupa menos espaço nas telas estreitas. */
+@media (max-width: 600px) {
+    .studio[data-open="false"] .toggleLabel {
+        display: none;
+    }
+    .studio[data-open="false"] .toggle {
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        justify-content: center;
+    }
+}
+
+/* Ajustes independentes de geometria, com valores visíveis em tempo real. */
+.geometryControls {
+    display: grid;
+    gap: 5px;
+    margin-top: 16px;
+}
+.geometryRange {
+    display: grid;
+    gap: 9px;
+    padding: 11px 0;
+    font-size: 12px;
+    font-weight: 600;
+}
+.geometryRangeHeading {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+}
+.geometryRangeHeading output {
+    font-variant-numeric: tabular-nums;
+    color: var(--color-secondary);
+    font-weight: 700;
+    white-space: nowrap;
+}
+.geometryRange input {
+    width: 100%;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+}
+.geometryReset {
+    width: 100%;
+    min-height: 40px;
+    margin-top: 14px;
+    padding: 10px;
+    border: 1px solid var(--color-border);
+    border-radius: 7px;
+    color: var(--color-text);
+    background: var(--color-background);
+    font-size: 12px;
+    font-weight: 700;
+}
+.geometryReset:hover {
+    background: var(--color-soft);
+}
+
+.guideToggle {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 16px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.guideToggle input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--color-primary);
+}
