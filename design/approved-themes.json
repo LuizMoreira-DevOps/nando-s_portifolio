@@ -1,0 +1,59 @@
+{
+    "version": 1,
+    "defaultTheme": "blue-light",
+    "scrollMode": "reels",
+    "showLayoutGuidesInDevelopment": false,
+    "texture": "dots",
+    "palettes": {
+        "green": {
+            "name": "Verde",
+            "light": {
+                "background": "#F6F3EC",
+                "surface": "#FFFFFF",
+                "text": "#15191A",
+                "muted": "#4F5C54",
+                "primary": "#276449",
+                "onPrimary": "#FFFFFF",
+                "border": "#D8DCD5",
+                "secondary": "#376A55",
+                "tertiary": "#AA3D3D"
+            },
+            "dark": {
+                "background": "#060908",
+                "surface": "#3C3939",
+                "text": "#FFFFFF",
+                "muted": "#FFFFFF",
+                "primary": "#29995B",
+                "onPrimary": "#FFFFFF",
+                "border": "#29995B",
+                "secondary": "#00FF7B",
+                "tertiary": "#FF8C00"
+            }
+        },
+        "blue": {
+            "name": "Azul",
+            "light": {
+                "background": "#F6F3EC",
+                "surface": "#FFFFFF",
+                "text": "#15191A",
+                "muted": "#525A64",
+                "primary": "#235C98",
+                "onPrimary": "#FFFFFF",
+                "border": "#D8D6D0",
+                "secondary": "#385F79",
+                "tertiary": "#AA3D3D"
+            },
+            "dark": {
+                "background": "#111212",
+                "surface": "#31383F",
+                "text": "#FFFFFF",
+                "muted": "#FFFFFF",
+                "primary": "#2878CC",
+                "onPrimary": "#FFFFFF",
+                "border": "#506C86",
+                "secondary": "#A3DAFF",
+                "tertiary": "#00FFAA"
+            }
+        }
+    }
+}
