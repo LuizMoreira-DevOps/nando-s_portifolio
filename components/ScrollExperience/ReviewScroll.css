@@ -1,0 +1,72 @@
+.ux-review {
+    position: fixed;
+    bottom: 12px;
+    right: 12px;
+    z-index: 60;
+    max-width: min(320px, calc(100vw - 24px));
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    box-shadow: 0 6px 24px #0002;
+    font-size: 13px;
+}
+
+.ux-review summary {
+    padding: 10px 14px;
+}
+
+.ux-review-controls {
+    display: grid;
+    gap: 10px;
+    padding: 0 14px 14px;
+    max-height: 60svh;
+    overflow-y: auto;
+}
+
+.ux-review-controls p {
+    margin: 0;
+}
+
+.ux-review-controls label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ux-review-controls select {
+    width: 100%;
+    padding: 8px;
+    background: var(--color-background);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+}
+
+.ux-review nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.ux-review nav a {
+    text-decoration: underline;
+    padding: 6px;
+}
+
+html[data-ux-review="true"] [data-review-id] {
+    position: relative;
+    outline: 2px dashed var(--color-primary);
+    outline-offset: -2px;
+}
+
+html[data-ux-review="true"] [data-review-id]::before {
+    content: attr(data-review-id);
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3px 8px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: 700 12px monospace;
+    pointer-events: none;
+}
