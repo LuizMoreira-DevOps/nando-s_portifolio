@@ -1,0 +1,71 @@
+/* ── Cores e variáveis semânticas ── */
+
+:root {
+    --color-background: #f6f3ec;
+    --color-surface: #ffffff;
+    --color-text: #15191a;
+    --color-muted: #525a64;
+    --color-primary: #235c98;
+    --color-secondary: #385f79;
+    --color-tertiary: #81567f;
+    --color-on-primary: #ffffff;
+    --color-border: #d8d6d0;
+    --color-soft: color-mix(in srgb, var(--color-background) 70%, var(--color-surface));
+    --color-hover: color-mix(in srgb, var(--color-primary) 12%, var(--color-surface));
+    color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-site-mode]) {
+        --color-background: #151c24;
+        --color-surface: #1d2936;
+        --color-text: #f3f5f8;
+        --color-muted: #bec8d4;
+        --color-primary: #86baf0;
+        --color-secondary: #a0c8e2;
+        --color-tertiary: #e0acda;
+        --color-on-primary: #101e2e;
+        --color-border: #3c4c5b;
+        color-scheme: dark;
+    }
+}
+
+:root[data-site-mode="dark"] {
+    color-scheme: dark;
+}
+
+:root[data-site-mode="light"] {
+    color-scheme: light;
+}
+
+:root[data-site-texture="dots"] body {
+    background-image: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--color-secondary) 13%, transparent) 1px,
+        transparent 1.5px
+    );
+    background-size: 24px 24px;
+}
+
+:root[data-site-texture="grid"] body {
+    background-image: linear-gradient(
+            color-mix(in srgb, var(--color-secondary) 9%, transparent) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            color-mix(in srgb, var(--color-secondary) 9%, transparent) 1px,
+            transparent 1px
+        );
+    background-size: 32px 32px;
+}
+
+:root[data-site-texture="diagonal"] body {
+    background-image: repeating-linear-gradient(
+        135deg,
+        transparent 0,
+        transparent 12px,
+        color-mix(in srgb, var(--color-tertiary) 7%, transparent) 12px,
+        color-mix(in srgb, var(--color-tertiary) 7%, transparent) 13px
+    );
+}
