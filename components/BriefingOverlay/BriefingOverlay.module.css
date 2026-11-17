@@ -1,0 +1,259 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+
+    width: 100%;
+    margin: 0 0 -38px;
+
+    pointer-events: none;
+}
+
+.close {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+
+    width: 38px;
+    height: 38px;
+    padding: 0;
+
+    border: 1px solid var(--color-border);
+    border-radius: 50%;
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    transition:
+        background-color 180ms ease,
+        border-color 180ms ease;
+}
+
+.close:hover {
+    border-color: var(--color-primary);
+
+    background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+}
+
+.close:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 3px;
+}
+
+.eyebrow {
+    margin: 0;
+
+    color: var(--color-secondary);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.title {
+    max-width: 100%;
+    margin: 0;
+    padding-right: 48px;
+
+    font-family: var(--font-heading);
+    font-size: clamp(22px, 2.4vw, 25px);
+    line-height: 1.15;
+    letter-spacing: var(--tracking-copy);
+
+    text-wrap: balance;
+}
+
+.title span {
+    color: var(--color-primary);
+}
+
+.description {
+    max-width: 60ch;
+    margin: 10px 0 16px;
+
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.5;
+
+    text-wrap: pretty;
+}
+
+.description {
+    margin: 14px 0 28px;
+
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+/* ==========================================
+    BRIEFING COMPACTO - SOMENTE MODAL
+    ========================================== */
+
+.formShell {
+    width: 100%;
+    min-width: 0;
+}
+
+/* Espaçamento geral */
+
+.formShell :global(.briefing-form) {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 11px;
+}
+
+/* Rótulo + campo */
+
+.formShell :global(.briefing-field) {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    min-width: 0;
+}
+
+.formShell :global(.briefing-form label) {
+    margin: 0;
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* Seletores */
+
+.formShell :global(.briefing-form select) {
+    box-sizing: border-box;
+
+    min-height: 46px;
+    padding: 9px 12px;
+
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Área de descrição */
+
+.formShell :global(.briefing-form textarea) {
+    box-sizing: border-box;
+
+    width: 100%;
+    height: 94px;
+    min-height: 94px;
+
+    padding: 11px 13px;
+    border-radius: 8px;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    resize: vertical;
+}
+
+/* Prazo e investimento */
+
+.formShell :global(.briefing-columns) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.formShell :global(.briefing-columns > div) {
+    gap: 5px;
+    min-width: 0;
+}
+
+/* Botão WhatsApp */
+
+.formShell :global(.briefing-form) > button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    align-self: stretch;
+
+    width: 100%;
+    min-height: 48px;
+
+    margin-top: 2px;
+    padding: 11px 16px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+    font-weight: 800;
+}
+
+/* Nota de confirmação */
+
+.formShell :global(.briefing-form .briefing-note) {
+    margin: 0;
+
+    color: var(--color-muted);
+    font-size: 11px;
+    line-height: 1.4;
+    text-align: center;
+}
+
+/* Contexto de projeto */
+
+.formShell :global(.briefing-project-reference) {
+    margin-bottom: 14px;
+    padding: 10px 13px;
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+/* Inputs com a mesma altura dos selects */
+
+.formShell :global(.briefing-form input) {
+    box-sizing: border-box;
+
+    width: 100%;
+    min-height: 46px;
+    padding: 9px 12px;
+
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+    .formShell :global(.briefing-form) {
+        gap: 14px;
+    }
+
+    .formShell :global(.briefing-columns) {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .formShell :global(.briefing-form textarea) {
+        height: 120px;
+        min-height: 120px;
+    }
+
+    .formShell :global(.briefing-form select) {
+        min-height: 48px;
+    }
+
+    .formShell :global(.briefing-form input) {
+        min-height: 48px;
+    }
+}
+
+@media (max-width: 560px) {
+    .description {
+        margin-bottom: 20px;
+    }
+}

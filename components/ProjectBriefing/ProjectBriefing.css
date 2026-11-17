@@ -1,0 +1,261 @@
+.briefing {
+    width: 100%;
+    min-width: 0;
+}
+
+.briefing-intro {
+    margin-bottom: 26px;
+}
+
+.briefing-intro h3 {
+    margin: 12px 0 16px;
+    font-size: clamp(1.8rem, 2.5vw, 2.6rem);
+    line-height: 1.12;
+    letter-spacing: -0.045em;
+}
+
+.briefing-form {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--layout-grid-gap);
+}
+
+.briefing-form label {
+    font-size: 0.98rem;
+    font-weight: 700;
+}
+
+.briefing-form select,
+.briefing-form textarea {
+    width: 100%;
+    min-width: 0;
+    padding: 18px 20px;
+    border-radius: 10px;
+    background: var(--color-surface);
+    color: var(--color-text);
+    font: inherit;
+    font-size: 15px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.briefing-form textarea {
+    resize: vertical;
+    line-height: 1.6;
+    min-height: 180px;
+}
+
+.briefing-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--layout-grid-gap);
+}
+
+.briefing-columns > div {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.briefing-form > button {
+    align-self: flex-start;
+    margin-top: 15px;
+    cursor: pointer;
+}
+
+.briefing-form .briefing-note {
+    margin: 0;
+    font-size: 12px;
+    line-height: var(--line-height-copy);
+    color: var(--color-muted);
+}
+
+.briefing-error {
+    padding: 14px 16px;
+
+    border: 1px solid #f1c6c6;
+    border-left: 3px solid #b42318;
+    border-radius: 10px;
+
+    background: #fff0f0;
+    color: #9d1c1c;
+
+    font-size: 0.95rem;
+}
+
+.briefing-intro p:last-child {
+    color: var(--color-muted);
+    line-height: 1.6;
+}
+
+.briefing-form select {
+    min-height: 62px;
+}
+
+.briefing-form textarea::placeholder {
+    color: var(--color-muted);
+}
+
+.briefing-note {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--color-muted);
+    line-height: 1.5;
+}
+
+/* ==========================================
+    CAMPOS DO BRIEFING
+    ========================================== */
+
+.briefing-form select,
+.briefing-form textarea {
+    width: 100%;
+    min-width: 0;
+
+    padding: 18px 20px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    color-scheme: inherit;
+
+    font: inherit;
+    font-size: 15px;
+
+    transition:
+        border-color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+.briefing-form select {
+    min-height: 62px;
+}
+
+.briefing-form textarea {
+    min-height: 180px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.briefing-form textarea::placeholder {
+    color: var(--color-muted);
+}
+
+/* ==========================================
+    CAMPOS DE CONTATO
+    ========================================== */
+
+.briefing-form input {
+    box-sizing: border-box;
+
+    width: 100%;
+    min-width: 0;
+    min-height: 62px;
+
+    padding: 18px 20px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 10px;
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    font: inherit;
+    font-size: 15px;
+
+    transition:
+        border-color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+.briefing-form input::placeholder {
+    color: var(--color-muted);
+}
+
+.briefing-form input:focus {
+    border-color: var(--color-primary);
+}
+
+.briefing-form input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.briefing-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    gap: 7px;
+}
+
+/* ==========================================
+    SELECT PERSONALIZÁVEL
+    ========================================== */
+
+@supports (appearance: base-select) {
+    .briefing-form select,
+    .briefing-form select::picker(select) {
+        appearance: base-select;
+    }
+
+    .briefing-form select::picker(select) {
+        padding: 8px;
+
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+
+        background: var(--color-surface);
+        color: var(--color-text);
+
+        box-shadow: 0 16px 36px color-mix(in srgb, var(--color-text) 12%, transparent);
+    }
+
+    .briefing-form select option {
+        padding: 12px 14px;
+        border-radius: 8px;
+
+        background: var(--color-surface);
+        color: var(--color-text);
+    }
+
+    /* Interação e seleção */
+
+    .briefing-form select option:hover,
+    .briefing-form select option:focus,
+    .briefing-form select option:checked {
+        background: color-mix(in srgb, var(--color-primary) 17%, var(--color-surface));
+
+        color: var(--color-text);
+    }
+
+    /* Indicador da opção selecionada */
+
+    .briefing-form select option::checkmark {
+        color: var(--color-primary);
+    }
+
+    /* Seta do seletor */
+
+    .briefing-form select::picker-icon {
+        color: var(--color-primary);
+        transition: transform 180ms ease;
+    }
+
+    .briefing-form select:open::picker-icon {
+        transform: rotate(180deg);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .briefing-form select::picker-icon {
+        transition: none;
+    }
+}
