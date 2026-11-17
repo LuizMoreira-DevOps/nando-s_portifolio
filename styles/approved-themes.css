@@ -1,0 +1,50 @@
+/* Arquivo gerado automaticamente. Não edite à mão.
+   Fonte: design/approved-themes.json | npm run sync:themes */
+html[data-theme-family="green"][data-site-mode="light"] {
+  --color-background: #F6F3EC;
+  --color-surface: #FFFFFF;
+  --color-text: #15191A;
+  --color-muted: #4F5C54;
+  --color-primary: #276449;
+  --color-on-primary: #FFFFFF;
+  --color-border: #D8DCD5;
+  --color-secondary: #376A55;
+  --color-tertiary: #AA3D3D;
+  color-scheme: light;
+}
+html[data-theme-family="green"][data-site-mode="dark"] {
+  --color-background: #060908;
+  --color-surface: #3C3939;
+  --color-text: #FFFFFF;
+  --color-muted: #FFFFFF;
+  --color-primary: #29995B;
+  --color-on-primary: #FFFFFF;
+  --color-border: #29995B;
+  --color-secondary: #00FF7B;
+  --color-tertiary: #FF8C00;
+  color-scheme: dark;
+}
+html[data-theme-family="blue"][data-site-mode="light"] {
+  --color-background: #F6F3EC;
+  --color-surface: #FFFFFF;
+  --color-text: #15191A;
+  --color-muted: #525A64;
+  --color-primary: #235C98;
+  --color-on-primary: #FFFFFF;
+  --color-border: #D8D6D0;
+  --color-secondary: #385F79;
+  --color-tertiary: #AA3D3D;
+  color-scheme: light;
+}
+html[data-theme-family="blue"][data-site-mode="dark"] {
+  --color-background: #111212;
+  --color-surface: #31383F;
+  --color-text: #FFFFFF;
+  --color-muted: #FFFFFF;
+  --color-primary: #2878CC;
+  --color-on-primary: #FFFFFF;
+  --color-border: #506C86;
+  --color-secondary: #A3DAFF;
+  --color-tertiary: #00FFAA;
+  color-scheme: dark;
+}
