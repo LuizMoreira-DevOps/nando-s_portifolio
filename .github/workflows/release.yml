@@ -1,0 +1,169 @@
+name: Release | Versioning
+
+on:
+    workflow_dispatch:
+        inputs:
+            confirm:
+                description: "Confirmo a criação da release"
+                required: true
+                type: boolean
+                default: false
+
+permissions:
+    contents: read
+
+concurrency:
+    group: release-main
+    cancel-in-progress: false
+
+jobs:
+    # ==========================================
+    # RELEASE VALIDATION
+    # ==========================================
+
+    verify:
+        name: Release Validation
+        if: github.ref == 'refs/heads/main' && inputs.confirm
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+
+        outputs:
+            version: ${{ steps.version.outputs.version }}
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  ref: ${{ github.sha }}
+                  persist-credentials: false
+
+            - name: Setup Node.js
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version: "24"
+                  package-manager-cache: false
+
+            - name: Validate version
+              id: version
+              run: |
+                  node <<'NODE'
+                  const fs = require("node:fs");
+                  const pkg = require("./package.json");
+                  const lock = require("./package-lock.json");
+
+                  const pattern = /^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?$/;
+
+                  if (!pattern.test(pkg.version)) {
+                      throw new Error("Invalid release version.");
+                  }
+
+                  const prerelease = pkg.version.split("-").slice(1).join("-");
+
+                  if (prerelease.split(".").some(id => /^0\d+$/.test(id))) {
+                      throw new Error("Invalid prerelease identifier.");
+                  }
+
+                  if (
+                      pkg.version !== lock.version ||
+                      pkg.version !== lock.packages[""].version
+                  ) {
+                      throw new Error("Package versions do not match.");
+                  }
+
+                  fs.appendFileSync(
+                      process.env.GITHUB_OUTPUT,
+                      `version=${pkg.version}\n`
+                  );
+                  NODE
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Security audit
+              run: npm audit --omit=dev --audit-level=high
+
+            - name: Validate generated themes
+              run: |
+                  git ls-files --error-unmatch styles/approved-themes.css
+                  npm run sync:themes
+                  git diff --exit-code -- styles/approved-themes.css
+
+            - name: ESLint
+              run: npm run lint
+
+            - name: TypeScript
+              run: npm run typecheck
+
+            - name: Build
+              run: npm run build
+
+    # ==========================================
+    # RELEASE PUBLICATION
+    # ==========================================
+
+    publish:
+        name: Publish GitHub Release
+        needs: verify
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        permissions:
+            contents: write
+
+        steps:
+            - name: Checkout validated commit
+              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  ref: ${{ github.sha }}
+                  fetch-depth: 0
+                  persist-credentials: false
+
+            - name: Create tag and release
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  VERSION: ${{ needs.verify.outputs.version }}
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  TAG="v${VERSION}"
+
+                  if gh release view "$TAG" \
+                      --repo "$GITHUB_REPOSITORY" \
+                      >/dev/null 2>&1; then
+
+                      echo "::error::Release $TAG already exists."
+                      exit 1
+                  fi
+
+                  if git show-ref --verify --quiet "refs/tags/$TAG"; then
+
+                      TAG_COMMIT="$(git rev-parse "refs/tags/${TAG}^{commit}")"
+
+                      if [[ "$TAG_COMMIT" != "$GITHUB_SHA" ]]; then
+                          echo "::error::Tag belongs to another commit."
+                          exit 1
+                      fi
+
+                  else
+
+                      gh api --method POST \
+                          "repos/${GITHUB_REPOSITORY}/git/refs" \
+                          -f ref="refs/tags/${TAG}" \
+                          -f sha="$GITHUB_SHA" \
+                          >/dev/null
+
+                  fi
+
+                  FLAGS=()
+
+                  if [[ "$VERSION" == *-* ]]; then
+                      FLAGS+=(--prerelease)
+                  fi
+
+                  gh release create "$TAG" \
+                      --repo "$GITHUB_REPOSITORY" \
+                      --verify-tag \
+                      --title "$TAG" \
+                      --generate-notes \
+                      "${FLAGS[@]}"
