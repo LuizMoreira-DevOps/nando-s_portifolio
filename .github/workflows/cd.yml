@@ -1,0 +1,180 @@
+name: CD | Continuous Delivery
+
+on:
+    workflow_dispatch:
+        inputs:
+            release_tag:
+                description: "Tag da release que será publicada"
+                required: true
+                type: string
+
+            publish:
+                description: "Confirmo a publicação em produção"
+                required: true
+                type: boolean
+                default: false
+
+permissions:
+    contents: read
+
+concurrency:
+    group: github-pages-production
+    cancel-in-progress: false
+
+jobs:
+    # ==========================================
+    # BUILD AND VALIDATION
+    # ==========================================
+
+    build:
+        name: Production Build
+        if: github.ref == 'refs/heads/main' && inputs.publish
+        runs-on: ubuntu-latest
+        timeout-minutes: 20
+
+        permissions:
+            contents: read
+            pages: read
+
+        env:
+            DEPLOY_TARGET: github-pages
+            NEXT_PUBLIC_WHATSAPP_NUMBER: ${{ vars.NEXT_PUBLIC_WHATSAPP_NUMBER }}
+            NEXT_PUBLIC_ENABLE_THEME_EDITOR: "false"
+            NEXT_PUBLIC_ENABLE_UX_TOOLS: "false"
+
+        steps:
+            - name: Checkout main
+              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  ref: ${{ github.sha }}
+                  fetch-depth: 0
+                  persist-credentials: false
+
+            - name: Validate selected release
+              env:
+                  GH_TOKEN: ${{ github.token }}
+                  RELEASE_TAG: ${{ inputs.release_tag }}
+              shell: bash
+              run: |
+                  set -euo pipefail
+
+                  if [[ ! "$RELEASE_TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?$ ]]; then
+                      echo "::error::Invalid release tag."
+                      exit 1
+                  fi
+
+                  gh release view "$RELEASE_TAG" \
+                      --repo "$GITHUB_REPOSITORY" \
+                      --json isDraft \
+                      --jq '.isDraft' | grep -qx false
+
+                  RELEASE_COMMIT="$(git rev-parse --verify "refs/tags/${RELEASE_TAG}^{commit}")"
+
+                  if ! git merge-base --is-ancestor "$RELEASE_COMMIT" "$GITHUB_SHA"; then
+                      echo "::error::Release does not belong to main history."
+                      exit 1
+                  fi
+
+                  git switch --detach "$RELEASE_COMMIT"
+
+                  echo "### Selected release" >> "$GITHUB_STEP_SUMMARY"
+                  echo "- Tag: $RELEASE_TAG" >> "$GITHUB_STEP_SUMMARY"
+                  echo "- Commit: $RELEASE_COMMIT" >> "$GITHUB_STEP_SUMMARY"
+
+            - name: Setup Node.js
+              uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+              with:
+                  node-version: "24"
+                  package-manager-cache: false
+
+            - name: Validate package versions
+              env:
+                  RELEASE_TAG: ${{ inputs.release_tag }}
+              run: |
+                  node <<'NODE'
+                  const pkg = require("./package.json");
+                  const lock = require("./package-lock.json");
+
+                  if (
+                      pkg.version !== lock.version ||
+                      pkg.version !== lock.packages[""].version
+                  ) {
+                      throw new Error("Package versions do not match.");
+                  }
+
+                  if (`v${pkg.version}` !== process.env.RELEASE_TAG) {
+                      throw new Error("Package version does not match the release.");
+                  }
+                  NODE
+
+            - name: Validate commercial contact
+              run: |
+                  node <<'NODE'
+                  const number = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+
+                  if (!/^[1-9]\d{9,14}$/.test(number)) {
+                      throw new Error("Invalid or missing NEXT_PUBLIC_WHATSAPP_NUMBER.");
+                  }
+                  NODE
+
+            - name: Configure GitHub Pages
+              id: pages
+              uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Security audit
+              run: npm audit --omit=dev --audit-level=high
+
+            - name: Validate generated themes
+              run: |
+                  git ls-files --error-unmatch styles/approved-themes.css
+                  npm run sync:themes
+                  git diff --exit-code -- styles/approved-themes.css
+
+            - name: ESLint
+              run: npm run lint
+
+            - name: TypeScript and static export
+              env:
+                  PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+                  NEXT_PUBLIC_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+              run: |
+                  npm run typecheck
+                  npm run build
+
+            - name: Validate build output
+              run: |
+                  test -f out/index.html
+                  test -d out/_next/static
+
+            - name: Upload production artifact
+              uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+              with:
+                  path: ./out
+                  include-hidden-files: false
+                  retention-days: 1
+
+    # ==========================================
+    # PRODUCTION DEPLOYMENT
+    # ==========================================
+
+    deploy:
+        name: Production Deployment
+        needs: build
+        runs-on: ubuntu-latest
+        timeout-minutes: 10
+
+        permissions:
+            pages: write
+            id-token: write
+
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
