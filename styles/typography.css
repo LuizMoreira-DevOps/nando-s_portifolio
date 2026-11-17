@@ -1,0 +1,89 @@
+/* ── Fontes e escala tipográfica ── */
+
+:root {
+    --font-heading: "Trebuchet MS", Arial, sans-serif;
+    --font-body: Verdana, Geneva, sans-serif;
+    --font-size-body: 20px;
+    --line-height-body: 1.5;
+    --font-size-section-title: clamp(2.15rem, 3.8vw, 3.8rem);
+    --font-size-page-title: 96px;
+    --font-size-page-subtitle: clamp(17px, 2vw, 23px);
+    --tracking-display: -0.035em;
+    --tracking-heading: -0.03em;
+    --line-height-copy: 1.7;
+    --tracking-copy: 0.01em;
+}
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--font-size-body);
+    line-height: var(--line-height-body);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading);
+}
+
+.eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+}
+
+.section-heading h2 {
+    font-size: var(--font-size-section-title);
+    line-height: 1.12;
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+}
+
+.section-heading > p {
+    line-height: var(--line-height-copy);
+}
+
+.section-heading--simple h2 {
+    font-size: clamp(2rem, 3.1vw, 3rem);
+}
+
+.section-counter {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.fine-print {
+    font-size: 13px;
+    line-height: 1.65;
+}
+
+.page-heading h1 {
+    font-size: var(--font-size-page-title);
+    line-height: 1.02;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+}
+
+.page-heading > p:last-child {
+    font-size: var(--font-size-page-subtitle);
+    line-height: 1.6;
+}
+
+@media (max-width: 720px) {
+    .page-heading h1 {
+        font-size: clamp(43px, 9vw, 70px);
+    }
+}
+
+.contact-invitation h2 {
+    font-size: clamp(2.2rem, 3.7vw, 3.7rem);
+    line-height: 1.12;
+    letter-spacing: var(--tracking-heading);
+}

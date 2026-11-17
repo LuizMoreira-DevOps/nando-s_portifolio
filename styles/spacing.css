@@ -1,0 +1,51 @@
+/* Espaçamento estrutural: edite diretamente os pixels de cada faixa.
+   Os decimais preservam as medidas aprovadas antes da simplificação. */
+
+:root {
+    --layout-gutter: 80px;
+    --layout-section-gap: 96px;
+    --layout-block-gap: 64px;
+    --layout-card-padding: 40px;
+    --layout-grid-gap: 40px;
+    --layout-page-top: 60px;
+    --layout-page-bottom: 72px;
+    --layout-header-height: 84px;
+    --layout-content-max: 1440px;
+    --layout-reading-width: 65ch;
+}
+
+/* Tablet */
+
+@media (max-width: 1050px) {
+    :root {
+        --layout-gutter: 40px;
+        --layout-section-gap: 76.8px;
+        --layout-block-gap: 51.2px;
+        --layout-card-padding: 36px;
+        --layout-grid-gap: 32px;
+        --layout-page-top: 48px;
+        --layout-page-bottom: 57.6px;
+    }
+}
+
+/* Celular */
+
+@media (max-width: 600px) {
+    :root {
+        --layout-gutter: 24px;
+        --layout-section-gap: 64.32px;
+        --layout-block-gap: 42.88px;
+        --layout-card-padding: 30px;
+        --layout-grid-gap: 26px;
+        --layout-page-top: 33.6px;
+        --layout-page-bottom: 48.24px;
+    }
+}
+
+/* Acompanha a mudança de altura do Header. */
+
+@media (max-width: 560px) {
+    :root {
+        --layout-header-height: 72px;
+    }
+}

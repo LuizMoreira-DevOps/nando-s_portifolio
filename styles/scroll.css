@@ -1,0 +1,46 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--layout-scroll-offset, 102px);
+    scroll-padding-bottom: 16px;
+}
+
+html[data-scroll-mode="reels"]:has(.home-page) {
+    scroll-snap-type: y proximity;
+}
+
+[data-reels-panel] {
+    scroll-snap-align: none;
+}
+
+html[data-scroll-mode="reels"] .home-page [data-reels-panel][data-snap-fits="true"] {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+}
+
+html:has([data-snap-fits="false"]:hover),
+html:has([data-scroll-exempt]:hover),
+html:has([data-scroll-exempt]:focus-within) {
+    scroll-snap-type: none;
+}
+
+:where(.content-section, .page-heading, .project-case, .about-section) {
+    scroll-margin-top: var(--layout-scroll-offset, 102px);
+}
+
+.solutions-page .process-journey {
+    scroll-snap-align: none;
+}
+
+/* O scroll-padding do documento já reserva o cabeçalho para a Home. */
+
+.home-page > section {
+    scroll-margin-top: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html,
+    html[data-scroll-mode="reels"]:has(.home-page) {
+        scroll-behavior: auto;
+        scroll-snap-type: none;
+    }
+}
