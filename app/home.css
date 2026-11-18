@@ -1,0 +1,43 @@
+/* Composição geral da Home: regras para a página como um todo. */
+
+@media (min-width: 1100px) {
+    .home-page {
+        --home-frame-height: calc(100svh - var(--layout-header-height));
+        --home-frame-padding: clamp(12px, 14.3svh, 38px);
+        --home-frame-gap: clamp(12px, 2svh, 32px);
+    }
+
+    .home-page > section {
+        min-height: var(--home-frame-height);
+        --section-padding: var(--home-frame-padding);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .home-page .section-heading {
+        align-items: center;
+        margin-bottom: var(--home-frame-gap);
+    }
+
+    .home-page .section-heading .eyebrow,
+    .home-page .section-heading .section-counter {
+        margin-block: 0 10px;
+    }
+
+    .home-page .section-heading h2 {
+        font-size: clamp(36px, min(3.8vw, 5.5svh), 76px);
+        margin-top: 0;
+    }
+
+    .home-page .section-heading > p {
+        font-size: clamp(16px, 2.2svh, 20px);
+        line-height: 1.5;
+        margin-block: 0;
+    }
+
+    .home-page > .home-solutions {
+        justify-content: flex-start;
+        --section-padding: 32px;
+    }
+}
