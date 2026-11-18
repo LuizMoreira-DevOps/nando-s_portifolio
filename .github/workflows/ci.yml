@@ -108,8 +108,28 @@ jobs:
             - name: ESLint
               run: npm run lint
 
-            - name: TypeScript
-              run: npm run typecheck
+            - name: TypeScript and static export
+              env:
+                  DEPLOY_TARGET: github-pages
+                  PAGES_BASE_PATH: /nando-s_portifolio
+                  NEXT_PUBLIC_BASE_PATH: /nando-s_portifolio
+                  NEXT_PUBLIC_ENABLE_THEME_EDITOR: "false"
+                  NEXT_PUBLIC_ENABLE_UX_TOOLS: "false"
+                  NEXT_PUBLIC_WHATSAPP_NUMBER: "5500000000000"
+              run: |
+                  npm run typecheck
+                  npm run build
 
-            - name: Build
-              run: npm run build
+            - name: Validate build output
+              run: |
+                  test -f out/index.html
+                  test -f out/404.html
+                  test -d out/_next/static
+
+            - name: Upload QA artifact
+              uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+              with:
+                  name: qa-static-export
+                  path: ./out
+                  include-hidden-files: false
+                  retention-days: 1
