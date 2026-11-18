@@ -1,0 +1,618 @@
+/* ==========================================
+   PROJECT SHOWCASE
+   ========================================== */
+
+.showcase {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 0.94fr)
+        minmax(0, 1.06fr);
+
+    align-items: center;
+    gap: clamp(28px, 4vw, 76px);
+    min-width: 0;
+}
+
+/* Alternância no desktop */
+
+@media (min-width: 961px) {
+    .reversed .visual {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .reversed .body {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}
+
+/* ==========================================
+    PAINEL VISUAL
+    ========================================== */
+
+.visual {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    min-width: 0;
+    min-height: clamp(400px, 38vw, 570px);
+
+    overflow: hidden;
+    padding: clamp(25px, 3vw, 42px);
+
+    border: 1px solid rgb(255 255 255 / 22%);
+    border-radius: 16px;
+
+    color: #fff;
+
+    transition:
+        transform 240ms ease,
+        box-shadow 240ms ease,
+        border-color 240ms ease;
+}
+
+.game {
+    background: linear-gradient(137deg, #0e2545, #266b8b);
+}
+
+.catalog {
+    background: linear-gradient(125deg, #143f32, #35694f);
+}
+
+.application {
+    background: linear-gradient(125deg, #252f49, #58536a);
+}
+
+.visual:hover {
+    transform: translateY(-4px);
+    border-color: rgb(255 255 255 / 55%);
+    box-shadow: 0 22px 48px rgb(0 0 0 / 16%);
+}
+
+.visual:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 5px;
+}
+
+.visualTop,
+.visualBottom {
+    position: relative;
+    z-index: 2;
+
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+/* Categoria à esquerda, ícone à direita */
+
+.visualTop {
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* Explorar projeto à direita */
+
+.visualBottom {
+    align-items: flex-end;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+/* Identificação da experiência */
+
+.previewCaption {
+    max-width: 20ch;
+    margin: 0;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+/* Ícone em destaque */
+
+.visualIcon {
+    display: grid;
+    place-items: center;
+
+    flex-shrink: 0;
+
+    width: 60px;
+    height: 60px;
+
+    border: 1px solid rgb(255 255 255 / 35%);
+    border-radius: 14px;
+
+    background: rgb(255 255 255 / 10%);
+    color: #fff;
+
+    transition:
+        background-color 220ms ease,
+        border-color 220ms ease;
+}
+
+.visual:hover .visualIcon,
+.visual:focus-visible .visualIcon {
+    background: rgb(255 255 255 / 19%);
+    border-color: rgb(255 255 255 / 70%);
+}
+
+/* Arte geométrica da Home */
+
+.visualArt {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+
+    pointer-events: none;
+}
+
+.orbit {
+    position: absolute;
+    top: 18%;
+    right: -25%;
+
+    width: 86%;
+    aspect-ratio: 1;
+
+    border: 1px solid rgb(255 255 255 / 32%);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 48px rgb(255 255 255 / 7%),
+        0 0 0 96px rgb(255 255 255 / 4%);
+}
+
+.core {
+    position: absolute;
+    top: 30%;
+    right: 2%;
+
+    width: 26%;
+    aspect-ratio: 1;
+
+    border: 1px solid rgb(255 255 255 / 14%);
+    border-radius: 22%;
+
+    transform: rotate(40deg);
+    transition: transform 500ms ease;
+}
+
+.visual:hover .core,
+.visual:focus-visible .core {
+    transform: rotate(55deg) scale(1.06);
+}
+
+/* Convite no próprio painel */
+
+.visualExplore {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.visualExplore svg {
+    flex-shrink: 0;
+}
+
+/* ==========================================
+    STATUS DOS PROJETOS
+    ========================================== */
+
+.projectMeta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 12px 20px;
+    width: 100%;
+    margin-bottom: 18px;
+}
+
+.projectMeta .status {
+    margin-left: auto;
+}
+
+.projectMeta .eyebrow {
+    margin: 0;
+}
+
+.status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+
+    width: fit-content;
+    padding: 9px 14px;
+
+    border: 1px solid color-mix(in srgb, var(--status-color) 35%, var(--color-border));
+
+    border-radius: 999px;
+
+    background: color-mix(in srgb, var(--status-color) 9%, var(--color-surface));
+
+    color: var(--color-text);
+
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+}
+
+/* Cores semânticas */
+
+.statusDelivered {
+    --status-color: #22b573;
+}
+
+.statusLegacy {
+    --status-color: #e6a23c;
+}
+
+.statusInProgress {
+    --status-color: #22b8d6;
+}
+
+/* Indicador luminoso */
+
+.statusLight {
+    display: block;
+    flex: 0 0 9px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: var(--status-color);
+
+    box-shadow:
+        0 0 0 4px color-mix(in srgb, var(--status-color) 15%, transparent),
+        0 0 12px color-mix(in srgb, var(--status-color) 65%, transparent);
+}
+
+/* Apenas projetos em desenvolvimento pulsam */
+
+.statusInProgress .statusLight {
+    animation: projectStatusPulse 2.4s ease-in-out 2;
+}
+
+@keyframes projectStatusPulse {
+    0%,
+    100% {
+        box-shadow:
+            0 0 0 3px color-mix(in srgb, var(--status-color) 12%, transparent),
+            0 0 7px var(--status-color);
+    }
+
+    50% {
+        box-shadow:
+            0 0 0 6px color-mix(in srgb, var(--status-color) 22%, transparent),
+            0 0 17px var(--status-color);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .statusInProgress .statusLight {
+        animation: none;
+    }
+}
+
+/* ==========================================
+    CONTEÚDO EDITORIAL
+    ========================================== */
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-width: 0;
+}
+
+/* Superfície adicional na seção texturizada */
+
+.reversed .body {
+    padding: clamp(25px, 3vw, 44px);
+
+    border: 1px solid var(--color-border);
+    border-radius: 16px;
+
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+
+    box-shadow: 0 16px 36px color-mix(in srgb, var(--color-text) 5%, transparent);
+}
+
+.eyebrow {
+    margin: 0 0 18px;
+
+    color: var(--color-secondary);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+    text-transform: uppercase;
+}
+
+.body h2 {
+    margin: 0 0 clamp(24px, 3vw, 38px);
+
+    font-family: var(--font-heading);
+    font-size: clamp(43px, 4.5vw, 74px);
+    line-height: 1.06;
+    letter-spacing: var(--tracking-display);
+    text-wrap: balance;
+}
+
+/* Desafio e solução */
+
+.details {
+    display: grid;
+    gap: clamp(22px, 2.5vw, 34px);
+    width: 100%;
+}
+
+.detail {
+    min-width: 0;
+}
+
+.detailHeading {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+
+    margin-bottom: 10px;
+}
+
+.detailHeading svg {
+    flex-shrink: 0;
+    color: var(--color-primary);
+}
+
+.detailHeading h3 {
+    margin: 0;
+
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.detail > p {
+    max-width: 62ch;
+    margin: 0;
+
+    color: var(--color-muted);
+    font-size: clamp(15px, 1.1vw, 18px);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+/* Tecnologias */
+
+.technologies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    width: 100%;
+    margin: 28px 0 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+.technologies li {
+    padding: 7px 11px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+
+    background: color-mix(in srgb, var(--color-primary) 3%, var(--color-surface));
+
+    color: var(--color-text);
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+/* ==========================================
+   CTAs
+   ========================================== */
+
+.actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    margin-top: 30px;
+}
+
+.action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    min-height: 54px;
+    padding: 12px 18px;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: 800;
+    line-height: 1.4;
+    text-align: center;
+
+    transition:
+        transform 220ms ease,
+        background-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.action:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 9px 24px color-mix(in srgb, var(--color-primary) 12%, transparent);
+}
+
+.actionSecondary {
+    min-height: 60px;
+    padding: 15px 24px;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 9px;
+
+    background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+
+    color: var(--color-primary);
+
+    font-size: 14px;
+    font-weight: 800;
+
+    box-shadow: 0 6px 18px color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.actionSecondary:hover {
+    background: color-mix(in srgb, var(--color-primary) 15%, var(--color-surface));
+
+    border-color: var(--color-primary);
+}
+
+.action:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+.notice {
+    margin: 18px 0 0;
+
+    color: var(--color-muted);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* ==========================================
+    DESENHO DOS ÍCONES ILUSTRATIVOS
+    ========================================== */
+
+.visualIcon svg :is(path, line, rect, circle, polyline) {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 0;
+}
+
+.visual:is(:hover, :focus-visible) .visualIcon svg :is(path, line, rect, circle, polyline) {
+    animation: projectStrokeDraw 750ms ease-out both;
+}
+
+@keyframes projectStrokeDraw {
+    from {
+        stroke-dashoffset: 120;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ==========================================
+    RESPONSIVIDADE
+    ========================================== */
+
+@media (max-width: 960px) {
+    .showcase {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .visual {
+        min-height: 360px;
+    }
+
+    .reversed .body {
+        grid-row: auto;
+        grid-column: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .showcase {
+        gap: 24px;
+    }
+
+    .visual {
+        min-height: 310px;
+        padding: 24px;
+    }
+
+    .visualIcon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .visualIcon svg {
+        width: 28px;
+        height: 28px;
+    }
+
+    .body h2 {
+        font-size: clamp(38px, 9vw, 54px);
+    }
+
+    .reversed .body {
+        padding: 24px 20px;
+    }
+
+    .actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .action {
+        width: 100%;
+    }
+}
+
+/* ==========================================
+    ACESSIBILIDADE
+    ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .visual,
+    .core,
+    .visualIcon,
+    .action {
+        transition: none;
+    }
+
+    .visual:hover,
+    .action:hover {
+        transform: none;
+    }
+
+    .visual:hover .core,
+    .visual:focus-visible .core {
+        transform: rotate(40deg);
+    }
+
+    /* Apenas animações ilustrativas */
+
+    .visual:is(:hover, :focus-visible) .visualIcon svg * {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+}

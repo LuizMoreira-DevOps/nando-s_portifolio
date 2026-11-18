@@ -1,0 +1,189 @@
+/* ==========================================
+    ABOUT SIGNATURE
+    assinatura digitada
+    ========================================== */
+
+.signature {
+    position: relative;
+    isolation: isolate;
+
+    display: grid;
+    place-items: center;
+
+    width: 100%;
+    min-height: 330px;
+    aspect-ratio: 1.55;
+
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+
+    background:
+        radial-gradient(
+            circle at 52% 48%,
+            color-mix(in srgb, var(--color-primary) 12%, transparent),
+            transparent 62%
+        ),
+        color-mix(in srgb, var(--color-surface) 94%, transparent);
+
+    transition:
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.signature:hover {
+    border-color: var(--color-primary);
+
+    box-shadow: 0 18px 48px color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+/* ==========================================
+    ASSINATURA DIGITADA
+    ========================================== */
+
+.signatureTag {
+    position: absolute;
+    z-index: 2;
+
+    top: 20%;
+    left: 6%;
+
+    display: inline-flex;
+    align-items: baseline;
+
+    max-width: 88%;
+    padding: 13px 18px;
+
+    border-radius: 12px;
+
+    background: var(--color-primary);
+    color: var(--color-on-primary);
+
+    font-family: Consolas, "Courier New", monospace;
+
+    font-size: clamp(16px, 2vw, 23px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+
+    white-space: nowrap;
+
+    box-shadow: 0 10px 24px color-mix(in srgb, var(--color-primary) 15%, transparent);
+}
+
+.typed {
+    display: inline-block;
+
+    width: 0;
+    overflow: hidden;
+
+    white-space: nowrap;
+
+    animation: signatureType 900ms steps(9, end) 1.65s both;
+}
+
+@keyframes signatureType {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 9ch;
+    }
+}
+
+/* Cursor no estilo insert */
+
+.cursor {
+    display: inline-block;
+
+    margin-left: 1px;
+
+    animation: cursorBlink 900ms step-end 5;
+}
+
+@keyframes cursorBlink {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* ==========================================
+    LEGENDA DISCRETA
+    ========================================== */
+
+.signatureDetail {
+    position: absolute;
+    right: 24px;
+    bottom: 22px;
+
+    color: var(--color-secondary);
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+/* ==========================================
+    REPRODUZIR NO HOVER
+    ========================================== */
+
+.signature:hover .typed {
+    animation-name: signatureTypeAgain;
+}
+
+@keyframes signatureTypeAgain {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 9ch;
+    }
+}
+
+/* ==========================================
+    MOBILE
+    ========================================== */
+
+@media (max-width: 600px) {
+    .signature {
+        min-height: 250px;
+        border-radius: 14px;
+    }
+
+    .signatureTag {
+        top: 23%;
+        padding: 10px 13px;
+        border-radius: 9px;
+
+        font-size: clamp(14px, 3.6vw, 19px);
+    }
+
+    .signatureDetail {
+        right: 15px;
+        bottom: 15px;
+        font-size: 9px;
+    }
+}
+
+/* ==========================================
+    MOVIMENTO REDUZIDO
+    ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .signature {
+        transition: none;
+    }
+
+    .typed,
+    .signature:hover .typed {
+        width: 9ch;
+        animation: none;
+    }
+
+    .cursor {
+        animation: none;
+    }
+}
