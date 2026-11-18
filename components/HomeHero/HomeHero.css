@@ -1,0 +1,185 @@
+/* Hero: estilos do componente HomeHero. */
+
+.home-hero {
+    display: grid;
+    align-items: center;
+    gap: var(--layout-block-gap);
+    grid-template-columns: minmax(0, 1fr);
+    min-height: calc(100svh - var(--layout-header-height));
+    max-width: var(--layout-content-max);
+    padding-block: clamp(60px, 10svh, 100px);
+}
+
+.home-hero h1 {
+    margin: 23.04px 0;
+    font-weight: 800;
+    line-height: 0.99;
+    letter-spacing: -0.078em;
+    max-width: none;
+    font-size: var(--font-size-page-title);
+    letter-spacing: var(--tracking-heading);
+}
+
+.home-hero h1 span {
+    color: var(--color-primary);
+    display: block;
+}
+
+.hero-description {
+    font-size: var(--font-size-page-subtitle);
+    line-height: var(--line-height-copy);
+    color: var(--color-muted);
+    max-width: 680px;
+    text-wrap: pretty;
+}
+
+@media (max-width: 560px) {
+    .home-hero {
+        gap: var(--layout-block-gap);
+    }
+}
+
+@media (max-width: 720px) {
+    .home-hero h1 {
+        font-size: clamp(42px, 10vw, 64px);
+    }
+}
+
+@media (min-width: 1100px) {
+    .home-hero {
+        padding-block: var(--home-frame-padding);
+        align-items: stretch;
+    }
+
+    .home-hero h1 {
+        font-size: 96px;
+        margin-block: 20px;
+    }
+
+    .home-hero .button--hero {
+        margin-top: clamp(12px, 2.5svh, 32px);
+    }
+}
+
+@media (max-width: 1050px) {
+    .home-hero h1 {
+        margin: 18.432px 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-hero h1 {
+        margin: 18px 0;
+    }
+}
+
+/* ==========================================
+    HOME HERO — TABLET E MOBILE
+    ========================================== */
+
+@media (max-width: 1099px) {
+    .home-hero {
+        justify-items: center;
+    }
+
+    .home-hero .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        width: 100%;
+        max-width: 760px;
+
+        text-align: center;
+    }
+
+    /* Título */
+
+    .home-hero h1 {
+        text-align: center;
+        text-wrap: balance;
+    }
+
+    /* Descrição */
+
+    .home-hero .hero-description {
+        max-width: 620px;
+        margin-inline: auto;
+
+        text-align: center;
+        text-wrap: pretty;
+    }
+
+    /* CTA */
+
+    .home-hero .button--hero {
+        align-self: center;
+        margin-inline: auto;
+    }
+}
+
+/* ==========================================
+    HOME HERO
+    Alinhamento universal
+    ========================================== */
+
+.home-page .home-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Conjunto: título, descrição e CTA */
+
+.home-hero .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    min-width: 0;
+
+    text-align: center;
+}
+
+/* Título */
+
+.home-hero h1 {
+    margin-inline: auto;
+    text-align: center;
+    text-wrap: balance;
+}
+
+/* Descrição */
+
+.home-hero .hero-description {
+    max-width: 680px;
+    margin-inline: auto;
+
+    text-align: center;
+    text-wrap: pretty;
+}
+
+/* Flecha de navegação */
+
+.home-hero .home-hero-scroll {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: fit-content;
+
+    margin-top: clamp(24px, 4svh, 44px);
+
+    color: var(--color-primary);
+    border-radius: 50%;
+    line-height: 0;
+}
+
+/* Acessibilidade */
+
+.home-hero .home-hero-scroll:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 6px;
+}

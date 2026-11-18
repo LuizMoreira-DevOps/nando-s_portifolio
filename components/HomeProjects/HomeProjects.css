@@ -1,0 +1,404 @@
+/* Vitrine criativa da Home. */
+
+.home-projects {
+    --section-padding: clamp(28px, 4svh, 48px);
+    padding-block-start: 24px;
+}
+
+.home-projects .section-heading {
+    align-items: center;
+    margin-bottom: clamp(24px, 3.5svh, 40px);
+}
+
+.home-projects .section-heading > p {
+    margin-block: 0;
+}
+
+.home-projects > .fine-print {
+    margin-block: 16px 0;
+}
+
+.home-projects h2 span {
+    color: var(--color-primary);
+}
+
+.projects-showcase {
+    min-width: 0;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    grid-template-rows: repeat(2, minmax(clamp(180px, calc((100svh - 390px) / 2), 230px), auto));
+    gap: 18px;
+}
+
+.project-portal {
+    min-width: 0;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 0;
+    gap: 20px;
+    padding: clamp(24px, 2.2vw, 36px);
+    border: 1px solid rgb(255 255 255 / 24%);
+    border-radius: 16px;
+    color: #fff;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.project-portal:focus-visible {
+    outline: 4px solid var(--color-tertiary);
+    outline-offset: 5px;
+}
+
+.project-portal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 36px #0003;
+}
+
+.project-portal--game {
+    grid-row: span 2;
+    background: linear-gradient(137deg, #0e2545, #266b8b);
+}
+
+.project-portal--catalog {
+    background: linear-gradient(125deg, #143f32, #35694f);
+}
+
+.project-portal--application {
+    background: linear-gradient(125deg, #252f49, #58536a);
+}
+
+.project-portal-top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: relative;
+    z-index: 2;
+}
+
+.project-portal-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 48px;
+    height: 48px;
+
+    border: 1px solid rgb(255 255 255 / 35%);
+    border-radius: 50%;
+
+    background: rgb(255 255 255 / 10%);
+    color: #fff;
+
+    transition:
+        transform 250ms ease,
+        background-color 250ms ease,
+        border-color 250ms ease;
+}
+
+.project-portal-icon svg {
+    display: block;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    aspect-ratio: 1 / 1;
+}
+
+.project-portal:hover .project-portal-icon,
+.project-portal:focus-visible .project-portal-icon {
+    transform: scale(1.1);
+    background: rgb(255 255 255 / 20%);
+    border-color: rgb(255 255 255 / 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-portal-icon {
+        transition: none;
+    }
+
+    .project-portal:hover .project-portal-icon,
+    .project-portal:focus-visible .project-portal-icon {
+        transform: none;
+    }
+}
+
+.project-portal-bottom {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 8px;
+}
+
+.project-portal-bottom > span {
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.85;
+}
+
+.project-portal-bottom strong {
+    font-family: var(--font-heading);
+    line-height: 1.03;
+    letter-spacing: var(--tracking-display);
+    font-size: clamp(2rem, 3.8vw, 4rem);
+}
+
+.project-portal-bottom small {
+    opacity: 0.85;
+    font-size: 14px;
+}
+
+.project-portal-art {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.7;
+}
+
+.project-portal-orbit {
+    position: absolute;
+    width: 55%;
+    aspect-ratio: 1;
+    top: 17%;
+    right: -12%;
+    border: 1px solid #ffffff7a;
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 30px #ffffff0c,
+        0 0 0 68px #ffffff07;
+}
+
+.project-portal-core {
+    position: absolute;
+    width: 27%;
+    aspect-ratio: 1;
+    top: 26%;
+    right: 2%;
+    border-radius: 20%;
+    border: 1px solid #ffffff30;
+    transform: rotate(40deg);
+}
+
+/* Gamepad: desenho progressivo */
+
+.project-portal--game .project-portal-icon svg path {
+    --draw-length: 80;
+    stroke-dasharray: var(--draw-length);
+    stroke-dashoffset: 0;
+}
+
+.project-portal--game .project-portal-icon svg path:nth-child(2) {
+    --draw-length: 40;
+}
+
+.project-portal--game .project-portal-icon svg path:nth-child(n + 3) {
+    --draw-length: 4;
+}
+
+.project-portal--game:is(:hover, :focus-visible) .project-portal-icon svg path {
+    animation: gamepad-draw 650ms ease-out both;
+}
+
+.project-portal--game:is(:hover, :focus-visible) .project-portal-icon svg path:nth-child(2) {
+    animation-delay: 100ms;
+}
+
+.project-portal--game:is(:hover, :focus-visible) .project-portal-icon svg path:nth-child(n + 3) {
+    animation-delay: 180ms;
+}
+
+@keyframes gamepad-draw {
+    from {
+        stroke-dashoffset: var(--draw-length);
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-portal--game:is(:hover, :focus-visible) .project-portal-icon svg path {
+        animation: none;
+    }
+}
+
+/* ==========================================
+    CHOUGA ONLINE: GLOBO ANIMADO
+   ========================================== */
+
+.project-portal--catalog .project-portal-icon svg :is(path, circle, line) {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 0;
+}
+
+.project-portal--catalog:is(:hover, :focus-visible)
+    .project-portal-icon
+    svg
+    :is(path, circle, line) {
+    animation: project-icon-draw 750ms ease-out both;
+}
+
+/* Meridianos e linhas internas */
+
+.project-portal--catalog:is(:hover, :focus-visible) .project-portal-icon svg :nth-child(n + 2) {
+    animation-delay: 120ms;
+}
+
+/* ==========================================
+    CHOUGA V2: NAVEGADOR ANIMADO
+   ========================================== */
+
+.project-portal--application .project-portal-icon svg :is(path, rect, line, circle) {
+    stroke-dasharray: 120;
+    stroke-dashoffset: 0;
+}
+
+.project-portal--application:is(:hover, :focus-visible)
+    .project-portal-icon
+    svg
+    :is(path, rect, line, circle) {
+    animation: project-icon-draw 650ms ease-out both;
+}
+
+/* Elementos internos do navegador */
+
+.project-portal--application:is(:hover, :focus-visible) .project-portal-icon svg :nth-child(n + 2) {
+    animation-delay: 150ms;
+}
+
+/* ==========================================
+    ANIMAÇÃO COMPARTILHADA
+   ========================================== */
+
+@keyframes project-icon-draw {
+    from {
+        stroke-dashoffset: 120;
+    }
+
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+
+/* Acessibilidade */
+
+@media (prefers-reduced-motion: reduce) {
+    .project-portal--catalog:is(:hover, :focus-visible) .project-portal-icon svg *,
+    .project-portal--application:is(:hover, :focus-visible) .project-portal-icon svg * {
+        animation: none;
+        stroke-dashoffset: 0;
+    }
+}
+
+/* ==========================================
+    RODAPÉ DA SEÇÃO PROJETOS
+   ========================================== */
+
+.home-projects-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 16px;
+    width: 100%;
+    margin-top: clamp(24px, 3svh, 40px);
+
+    text-align: center;
+}
+
+.home-projects-footer p {
+    max-width: 65ch;
+    margin: 0;
+
+    color: var(--color-muted);
+    font-size: clamp(14px, 1vw, 17px);
+    line-height: 1.6;
+    text-wrap: pretty;
+}
+
+.home-projects-footer .button {
+    min-height: 56px;
+    border-radius: 8px;
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+    .home-projects-footer .button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 960px) {
+    .projects-showcase {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .projects-showcase {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+    .project-portal {
+        min-height: 245px;
+    }
+    .project-portal--game {
+        grid-row: auto;
+        min-height: 310px;
+    }
+}
+
+@media (min-width: 1100px) {
+    .projects-showcase {
+        width: 100%;
+        grid-template-rows: repeat(
+            2,
+            minmax(clamp(156px, calc((100svh - 310px) / 2), 250px), auto)
+        );
+        gap: clamp(12px, 2svh, 18px);
+    }
+
+    .project-portal {
+        padding: clamp(18px, 2.5svh, 32px);
+        gap: 14px;
+    }
+
+    .project-portal-bottom strong {
+        font-size: clamp(32px, min(3.8vw, 5.5svh), 56px);
+    }
+
+    .project-portal-bottom {
+        gap: 6px;
+    }
+
+    .home-projects > .fine-print {
+        align-self: stretch;
+        margin-top: 12px;
+    }
+
+    .home-page > .home-projects {
+        justify-content: flex-start;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .project-portal {
+        transition: none;
+    }
+
+    .project-portal:hover {
+        transform: none;
+    }
+}
