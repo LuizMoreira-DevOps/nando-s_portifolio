@@ -1,0 +1,45 @@
+/* Entrada única dos estilos.
+   Global primeiro, estilos da página/componente depois; rolagem no fim.
+   Não declarar estilos aqui. */
+
+@import "../styles/theme.css";
+
+@import "../styles/typography.css";
+
+@import "../styles/spacing.css";
+
+@import "../styles/shared.css";
+
+@import "../styles/approved-themes.css";
+
+@import "../components/Header/Header.css";
+
+@import "../components/HomeHero/HomeHero.css";
+
+@import "../components/HomeSolutions/HomeSolutions.css";
+
+@import "../components/HomeProjects/HomeProjects.css";
+
+@import "../components/HomeNextStep/HomeNextStep.css";
+
+@import "./home.css";
+
+@import "./solucoes/solucoes.css";
+
+@import "./projetos/projetos.css";
+
+@import "./sobre/sobre.css";
+
+@import "./contrate/contrate.css";
+
+@import "../components/Footer/Footer.css";
+
+@import "../components/ProjectBriefing/ProjectBriefing.css";
+
+@import "../components/ContentCarousel/ContentCarousel.css";
+
+@import "../components/ProcessJourney/ProcessJourney.css";
+
+@import "../components/ScrollExperience/ReviewScroll.css";
+
+@import "../styles/scroll.css";

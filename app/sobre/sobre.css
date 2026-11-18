@@ -1,0 +1,581 @@
+/* ==========================================
+    PÁGINA SOBRE
+    ========================================== */
+
+.about-page {
+    min-width: 0;
+}
+
+.about-page .about-band {
+    --section-padding: clamp(56px, 6vw, 96px);
+}
+
+/* ==========================================
+    01 / ABERTURA
+    ========================================== */
+
+.about-hero {
+    display: grid;
+    align-items: center;
+
+    min-height: calc(100svh - var(--layout-header-height));
+
+    padding-block: clamp(52px, 7vw, 96px);
+}
+
+/* ==========================================
+    SOBRE - HERO CENTRALIZADO
+    ========================================== */
+
+.about-hero-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: min(calc(100% - var(--layout-gutter) * 2), var(--layout-content-max));
+
+    margin-inline: auto;
+}
+
+.about-hero-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+
+    margin-inline: auto;
+    text-align: center;
+}
+
+.about-hero-copy .eyebrow {
+    margin: 0 0 24px;
+    text-align: center;
+}
+
+.about-hero h1 {
+    max-width: 17ch;
+    margin: 0 auto;
+
+    font-family: var(--font-heading);
+    font-size: var(--font-size-page-title);
+    line-height: 1.05;
+    letter-spacing: var(--tracking-display);
+
+    text-align: center;
+    text-wrap: balance;
+}
+
+.about-hero h1 span {
+    color: var(--color-primary);
+}
+
+.about-hero-description {
+    max-width: 64ch;
+    margin: 30px auto 0;
+
+    color: var(--color-muted);
+    font-size: var(--font-size-page-subtitle);
+    line-height: 1.75;
+
+    text-align: center;
+    text-wrap: balance;
+}
+
+/* Seta centralizada */
+
+.about-hero-scroll {
+    display: inline-grid;
+    place-items: center;
+
+    width: 76px;
+    height: 76px;
+
+    margin: clamp(36px, 5vw, 60px) auto 0;
+
+    border-radius: 50%;
+    color: var(--color-primary);
+}
+
+.about-hero-scroll:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 4px;
+}
+
+/* Não mover o SVG */
+
+.about-page .about-hero-scroll:is(:hover, :focus-visible) svg {
+    transform: none;
+}
+
+/* ==========================================
+    TÍTULOS DAS SEÇÕES
+    ========================================== */
+
+.about-section-heading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    max-width: 920px;
+    margin: 0 auto clamp(34px, 5vw, 64px);
+
+    text-align: center;
+}
+
+.about-section-heading .eyebrow {
+    margin: 0 0 16px;
+}
+
+.about-section-heading h2 {
+    max-width: 19ch;
+    margin: 0;
+
+    font-family: var(--font-heading);
+    font-size: clamp(36px, 4vw, 62px);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-heading);
+
+    text-wrap: balance;
+}
+
+.about-section-heading > p:last-child {
+    max-width: 62ch;
+    margin: 24px 0 0;
+
+    color: var(--color-muted);
+    font-size: clamp(15px, 1.25vw, 19px);
+    line-height: 1.7;
+
+    text-wrap: pretty;
+}
+
+/* ==========================================
+    02 / LINHA DO TEMPO
+    ========================================== */
+
+.about-timeline {
+    max-width: 1100px;
+
+    margin: 0 auto;
+    padding: 0;
+
+    list-style: none;
+}
+
+.about-timeline-item {
+    display: grid;
+    grid-template-columns: 210px minmax(0, 1fr);
+    gap: clamp(24px, 4vw, 64px);
+
+    padding-block: clamp(28px, 3vw, 44px);
+
+    border-top: 1px solid var(--color-border);
+}
+
+.about-timeline-item:last-child {
+    border-bottom: 1px solid var(--color-border);
+}
+
+/* Identificação */
+
+.about-timeline-marker {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.about-timeline-marker > span {
+    display: grid;
+    place-items: center;
+
+    width: 44px;
+    height: 44px;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 12px;
+
+    background: color-mix(in srgb, var(--color-primary) 9%, var(--color-surface));
+
+    color: var(--color-primary);
+
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.about-timeline-marker strong {
+    font-family: var(--font-heading);
+    font-size: clamp(18px, 1.5vw, 24px);
+}
+
+/* Conteúdo */
+
+.about-timeline-copy {
+    min-width: 0;
+}
+
+.about-timeline-copy .eyebrow {
+    margin: 0 0 10px;
+}
+
+.about-timeline-copy h3 {
+    margin: 0 0 12px;
+
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 2.5vw, 38px);
+    line-height: 1.2;
+    letter-spacing: var(--tracking-heading);
+}
+
+.about-timeline-copy > p:last-child {
+    max-width: 69ch;
+    margin: 0;
+
+    color: var(--color-muted);
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.75;
+}
+
+/* ==========================================
+    03 / PRINCÍPIOS
+    ========================================== */
+
+.about-principles-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 26px);
+}
+
+.about-principle {
+    display: flex;
+    flex-direction: column;
+
+    min-width: 0;
+    padding: clamp(24px, 2.5vw, 38px);
+
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+
+    background: color-mix(in srgb, var(--color-surface) 96%, transparent);
+
+    transition:
+        transform 220ms ease,
+        border-color 220ms ease,
+        box-shadow 220ms ease;
+}
+
+.about-principle:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+
+    box-shadow: 0 14px 32px color-mix(in srgb, var(--color-primary) 9%, transparent);
+}
+
+.about-principle-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+
+    margin-bottom: 36px;
+}
+
+.about-principle-icon {
+    display: grid;
+    place-items: center;
+
+    width: 56px;
+    height: 56px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+
+    color: var(--color-primary);
+}
+
+.about-principle-number {
+    color: var(--color-secondary);
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.about-principle h3 {
+    margin: 0 0 14px;
+
+    font-family: var(--font-heading);
+    font-size: clamp(26px, 2.4vw, 36px);
+    letter-spacing: var(--tracking-heading);
+}
+
+.about-principle > p {
+    margin: 0;
+
+    color: var(--color-muted);
+    font-size: clamp(14px, 1vw, 17px);
+    line-height: 1.75;
+}
+
+/* Identidade do trabalho independente */
+
+.about-independent-note {
+    max-width: 90ch;
+    margin: 32px auto 0;
+    padding: 18px 24px;
+
+    border-left: 3px solid var(--color-primary);
+
+    background: color-mix(in srgb, var(--color-surface) 90%, transparent);
+
+    color: var(--color-muted);
+    font-size: 13px;
+    line-height: 1.75;
+}
+
+/* ==========================================
+    04 / LADO CRIATIVO
+    ========================================== */
+
+.about-creative-grid {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 0.95fr);
+
+    align-items: center;
+    gap: clamp(32px, 5vw, 90px);
+}
+
+.about-creative-copy .eyebrow {
+    margin: 0 0 18px;
+}
+
+.about-creative-copy h2 {
+    max-width: 16ch;
+    margin: 0 0 28px;
+
+    font-family: var(--font-heading);
+    font-size: clamp(38px, 4vw, 64px);
+    line-height: 1.1;
+    letter-spacing: var(--tracking-heading);
+
+    text-wrap: balance;
+}
+
+.about-creative-copy > p:not(.eyebrow) {
+    max-width: 63ch;
+    margin: 0 0 18px;
+
+    color: var(--color-muted);
+    font-size: clamp(15px, 1.15vw, 18px);
+    line-height: 1.75;
+}
+
+/* CTA */
+
+.about-creative-cta {
+    margin-top: 22px;
+    border-radius: 8px;
+}
+
+/* Painel de criatividade */
+
+.about-creative-panel {
+    position: relative;
+    isolation: isolate;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    min-height: 440px;
+    padding: clamp(28px, 3.5vw, 52px);
+
+    overflow: hidden;
+
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+
+    background:
+        radial-gradient(
+            circle at 90% 10%,
+            color-mix(in srgb, var(--color-primary) 20%, transparent),
+            transparent 56%
+        ),
+        var(--color-surface);
+}
+
+.about-creative-symbol {
+    display: grid;
+    place-items: center;
+
+    width: 88px;
+    height: 88px;
+
+    margin-bottom: 36px;
+
+    border: 1px solid var(--color-primary);
+    border-radius: 20px;
+
+    background: color-mix(in srgb, var(--color-primary) 8%, var(--color-surface));
+
+    color: var(--color-primary);
+}
+
+.about-creative-label {
+    margin: 0 0 16px;
+
+    color: var(--color-secondary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.about-creative-panel blockquote {
+    margin: 0;
+
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 2.6vw, 42px);
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: var(--tracking-heading);
+}
+
+.about-creative-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    margin-top: 36px;
+}
+
+.about-creative-tags span {
+    padding: 8px 12px;
+
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+
+    color: var(--color-muted);
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* ==========================================
+    TABLET
+    ========================================== */
+
+@media (max-width: 1000px) {
+    .about-hero-grid,
+    .about-creative-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-hero h1 {
+        max-width: 16ch;
+    }
+
+    .about-hero-grid {
+        gap: 45px;
+    }
+
+    .about-principles-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .about-principle-top {
+        margin-bottom: 20px;
+    }
+
+    .about-creative-panel {
+        min-height: 340px;
+    }
+}
+
+/* ==========================================
+   MOBILE
+   ========================================== */
+
+@media (max-width: 640px) {
+    .about-hero {
+        padding-block: 50px 60px;
+    }
+
+    .about-hero h1 {
+        font-size: clamp(43px, 10vw, 62px);
+    }
+
+    .about-hero-description {
+        font-size: 16px;
+    }
+
+    .about-page .about-band {
+        --section-padding: 48px;
+    }
+
+    .about-section-heading {
+        margin-bottom: 32px;
+    }
+
+    .about-section-heading h2 {
+        font-size: clamp(34px, 8vw, 48px);
+    }
+
+    .about-timeline-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-timeline-marker {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .about-timeline-copy h3 {
+        font-size: 27px;
+    }
+
+    .about-independent-note {
+        padding: 16px;
+    }
+
+    .about-creative-copy h2 {
+        font-size: clamp(36px, 8vw, 48px);
+    }
+
+    .about-creative-cta {
+        width: 100%;
+    }
+
+    .about-creative-panel {
+        min-height: 0;
+        padding: 28px 24px;
+    }
+
+    .about-creative-symbol {
+        width: 72px;
+        height: 72px;
+        margin-bottom: 24px;
+    }
+
+    .about-creative-panel blockquote {
+        font-size: clamp(25px, 6vw, 34px);
+    }
+}
+
+/* ==========================================
+    ACESSIBILIDADE
+    ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .about-principle {
+        transition: none;
+    }
+
+    .about-principle:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,599 @@
+/* Estrutura da demonstração */
+
+.demo {
+    padding-block: 24px 60px;
+    background: var(--color-background);
+}
+
+.demoBar,
+.site,
+.exit {
+    width: min(1180px, calc(100% - 32px));
+    margin-inline: auto;
+}
+
+.demoBar {
+    margin-bottom: 24px;
+}
+
+.demoBarContent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.demoBarContent strong {
+    font-size: 15px;
+}
+
+.demoBarContent p {
+    margin: 4px 0 0;
+    color: var(--color-muted);
+    font-size: 13px;
+}
+
+.returnLink {
+    flex-shrink: 0;
+    padding: 12px 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.returnLink:hover {
+    background: var(--color-hover);
+}
+
+/* Identidade visual fictícia */
+
+.site {
+    overflow: hidden;
+    border: 1px solid #d6d9d1;
+    border-radius: 16px;
+    background: #faf9f6;
+    color: #252c27;
+    box-shadow: 0 20px 60px rgb(0 0 0 / 7%);
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+.site :is(h1, h2, h3) {
+    font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho */
+
+.siteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 24px;
+    padding: 26px clamp(24px, 5vw, 64px);
+    background: #faf9f6;
+    border-bottom: 1px solid #e3e5de;
+}
+
+.brand {
+    font-size: 34px;
+    font-weight: 900;
+    letter-spacing: -0.08em;
+}
+
+.brand span {
+    color: #829478;
+}
+
+.navigation {
+    display: flex;
+    flex-wrap: wrap;
+    gap: clamp(16px, 2vw, 30px);
+}
+
+.navigation a {
+    padding-block: 6px;
+    color: #68746b;
+    font-size: 14px;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+}
+
+.navigation a:hover,
+.navigation a.active {
+    color: #304f3d;
+    border-color: #718e75;
+}
+
+.headerCta,
+.primaryButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 48px;
+    padding: 13px 20px;
+    border: 0;
+    border-radius: 7px;
+    background: #304f3d;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background-color 200ms ease,
+        transform 200ms ease;
+}
+
+.headerCta:hover,
+.primaryButton:hover {
+    background: #213b2c;
+    transform: translateY(-2px);
+}
+
+.siteBody {
+    min-height: 480px;
+}
+
+.eyebrow {
+    display: block;
+    color: #5c7962;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+/* Início */
+
+.hero {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    min-height: 520px;
+    overflow: hidden;
+    background: #f0f1ea;
+}
+
+.heroCopy {
+    position: relative;
+    z-index: 1;
+    padding: clamp(36px, 5vw, 76px);
+}
+
+.hero h1,
+.pageIntro h1,
+.contactCopy h1 {
+    margin: 20px 0 24px;
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: 1.06;
+    letter-spacing: -0.065em;
+}
+
+.heroCopy p,
+.pageIntro p,
+.contactCopy > p {
+    max-width: 52ch;
+    margin: 0 0 30px;
+    color: #647166;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.heroVisual {
+    position: relative;
+    align-self: stretch;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    min-height: 380px;
+    background: #cdd5c5;
+}
+
+.visualShape {
+    position: absolute;
+    width: 75%;
+    aspect-ratio: 1;
+    border: 55px solid #bbc8b5;
+    border-radius: 50%;
+    transform: translate(22%, 22%);
+}
+
+.visualCard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 60px 45px;
+    border: 1px solid #f5f5eb80;
+    background: rgb(255 255 255 / 18%);
+    color: #314b39;
+    backdrop-filter: blur(6px);
+}
+
+.visualCard span {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+}
+
+.visualCard strong {
+    font-size: 64px;
+    line-height: 1;
+}
+
+.introSection {
+    padding: clamp(48px, 6vw, 90px);
+    text-align: center;
+}
+
+.introSection h2 {
+    margin: 20px auto;
+    max-width: 18ch;
+    font-size: clamp(32px, 3.5vw, 50px);
+    line-height: 1.1;
+}
+
+.introSection > p {
+    max-width: 60ch;
+    margin: 0 auto 24px;
+    color: #647166;
+    line-height: 1.7;
+}
+
+.textLink {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    gap: 8px;
+    color: #36644b;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.textLink:hover {
+    text-decoration: underline;
+}
+
+/* Introdução das páginas internas */
+
+.pageIntro {
+    padding: clamp(50px, 6vw, 90px);
+    background: #eef0e8;
+}
+
+.pageIntro h1 {
+    max-width: 15ch;
+}
+
+.pageIntro p {
+    margin-bottom: 0;
+}
+
+/* Sobre */
+
+.storyGrid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: clamp(32px, 5vw, 80px);
+    padding: clamp(40px, 6vw, 90px);
+    align-items: center;
+}
+
+.storyVisual {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 390px;
+    padding: 36px;
+    background: #485f4d;
+    color: #fff;
+}
+
+.storyVisual span {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+}
+
+.storyVisual strong {
+    max-width: 10ch;
+    font-size: clamp(34px, 3vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -0.055em;
+}
+
+.storyText h2 {
+    margin: 20px 0;
+    font-size: clamp(28px, 3vw, 43px);
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+}
+
+.storyText p {
+    color: #647166;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.storyText .textLink {
+    margin-top: 16px;
+}
+
+/* Serviços */
+
+.servicesGrid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    padding: clamp(36px, 5vw, 70px);
+}
+
+.serviceCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-height: 300px;
+    padding: 28px;
+    border: 1px solid #d8ded4;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.serviceNumber {
+    margin-bottom: 45px;
+    color: #73947b;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.serviceCard h2 {
+    margin: 0 0 14px;
+    font-size: 24px;
+    line-height: 1.2;
+}
+
+.serviceCard p {
+    margin: 0 0 25px;
+    color: #647166;
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.serviceCard .textLink {
+    margin-top: auto;
+}
+
+/* Contato */
+
+.contactGrid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(32px, 5vw, 80px);
+    padding: clamp(40px, 6vw, 90px);
+    background: #eef0e8;
+}
+
+.contactCopy h1 {
+    font-size: clamp(36px, 4vw, 60px);
+}
+
+.demoNotice {
+    margin-top: 35px;
+    padding: 20px;
+    border-left: 3px solid #64866b;
+    background: #e3e8df;
+}
+
+.demoNotice strong {
+    font-size: 14px;
+}
+
+.demoNotice p {
+    margin: 8px 0 0;
+    color: #647166;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: clamp(22px, 3vw, 36px);
+    border: 1px solid #d8ded4;
+    border-radius: 12px;
+    background: #fff;
+}
+
+.contactForm label {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.contactForm input,
+.contactForm select,
+.contactForm textarea {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 10px;
+    border: 1px solid #bac8ba;
+    border-radius: 7px;
+    background: #fff;
+    color: #252c27;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.contactForm input,
+.contactForm select {
+    min-height: 48px;
+}
+
+.contactForm textarea {
+    resize: vertical;
+}
+
+.successMessage {
+    margin: 0;
+    padding: 14px;
+    border-radius: 8px;
+    background: #e4f2e7;
+    color: #245a36;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* Rodapé do site fictício */
+
+.siteFooter {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 35px clamp(24px, 5vw, 64px);
+    background: #263b2e;
+    color: #fff;
+}
+
+.siteFooter strong {
+    font-size: 27px;
+    letter-spacing: -0.07em;
+}
+
+.siteFooter p {
+    margin: 8px 0 0;
+    color: #d2dfd4;
+    font-size: 13px;
+}
+
+.siteFooter nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.siteFooter nav a {
+    font-size: 13px;
+    color: #d2dfd4;
+}
+
+.siteFooter nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+/* Encerramento da demonstração */
+
+.exit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    padding: 65px 20px 20px;
+    text-align: center;
+}
+
+.exit h2 {
+    margin: 0;
+    font-size: clamp(28px, 3vw, 42px);
+}
+
+.exit p {
+    max-width: 60ch;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 15px;
+    line-height: 1.65;
+}
+
+.exit .button {
+    margin-top: 12px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .hero,
+    .storyGrid,
+    .contactGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .heroVisual {
+        min-height: 280px;
+    }
+
+    .servicesGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .serviceCard {
+        min-height: 240px;
+    }
+
+    .serviceNumber {
+        margin-bottom: 24px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+    .demoBarContent {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .siteHeader {
+        padding: 24px;
+        gap: 18px;
+    }
+
+    .navigation {
+        order: 3;
+        width: 100%;
+        gap: 18px;
+    }
+
+    .heroCopy,
+    .pageIntro,
+    .storyGrid,
+    .contactGrid {
+        padding: 40px 24px;
+    }
+
+    .hero h1,
+    .pageIntro h1 {
+        font-size: clamp(38px, 9vw, 54px);
+    }
+
+    .introSection {
+        padding: 48px 24px;
+    }
+
+    .servicesGrid {
+        padding: 24px;
+    }
+
+    .exit .button {
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .headerCta,
+    .primaryButton {
+        transition: none;
+    }
+
+    .headerCta:hover,
+    .primaryButton:hover {
+        transform: none;
+    }
+}
